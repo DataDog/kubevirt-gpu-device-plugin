@@ -1,8 +1,6 @@
 module kubevirt-gpu-device-plugin
 
-go 1.23.0
-
-toolchain go1.23.5
+go 1.25.5
 
 require (
 	github.com/NVIDIA/gpu-monitoring-tools v0.0.0-20211102125545-5a2c58442e48
