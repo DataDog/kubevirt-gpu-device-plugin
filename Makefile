@@ -35,7 +35,8 @@ DOCKER_TARGETS := $(patsubst %,docker-%, $(TARGETS))
 GOOS ?= linux
 
 build:
-	GOOS=$(GOOS) go build -trimpath -o nvidia-kubevirt-gpu-device-plugin ./cmd
+	GOOS=$(GOOS) CGO_ENABLED=1 GOEXPERIMENT=boringcrypto go build -tags fips -trimpath -o nvidia-kubevirt-gpu-device-plugin ./cmd
+	go tool nm nvidia-kubevirt-gpu-device-plugin | grep -E 'sig.FIPSOnly'
 
 all: check test build
 check: $(CHECK_TARGETS)
