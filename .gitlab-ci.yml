@@ -1,0 +1,7 @@
+include: https://gitlab-templates.ddbuild.io/compute-delivery/v3/compute-delivery.yml
+
+build-docker-image:
+  variables:
+    EXTRA_ARGS: --file=dd.Dockerfile
+    IMAGE_NAME: nvidia/kubevirt-gpu-device-plugin
+  extends: .build-docker-image
