@@ -5,3 +5,10 @@ build-docker-image:
     EXTRA_ARGS: --file=dd.Dockerfile
     IMAGE_NAME: nvidia/kubevirt-gpu-device-plugin
   extends: .build-docker-image
+
+build-merged-nydus-image:
+  needs: ["build-docker-image"]
+  variables:
+    IMAGE_NAME: nvidia/kubevirt-gpu-device-plugin
+    MERGE_PLATFORM: "true"
+  extends: .build-nydus-image
